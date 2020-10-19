@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>Your Progress</title>
+  </head>
+  <body class="container">
+    <div class="form-group">
+      <label for="enter">Enter amount You are investing</label>
+      <input
+        type="text"
+        class="form-control"
+        id="enter"
+        placeholder="Enter full number: ex. 12"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="interest">Enter Your annual interest rate</label>
+      <input
+        type="text"
+        class="form-control"
+        id="interest"
+        placeholder="Enter your annual interest rate: ex. 4.05 "
+        required
+      />
+    </div>
+    <button class="btn btn-primary" onclick="calculate()">Calculate</button>
+
+    <br />
+    <div id="output"></div>
+    <div><span id="totalInterestPaid"></span></div>
+  </body>
+  <script>
+    var amount = document.getElementById("enter");
+    var output = document.getElementById("output");
+    var interest = document.getElementById("interest");
+    var totalInterestPaidOutput = document.getElementById("totalInterestPaid");
+
+    function calculate() {
+      var init = parseFloat(amount.value);
+      output.innerHTML = "Your initial investment is: " + init + "$" + "<br />";
+      var counter = 1;
+      var monthly = parseFloat(interest.value / 12)/100 +1;
+      var totalInterest = 0;
+      var newValue;
+
+      setInterval(function () {
+
+        if (counter <= 60) {
+          var year = "1";
+          if (counter > 12 && counter < 25) {
+            year = "2";
+          }
+          if (counter > 24 && counter < 37) {
+            year = "3";
+          }
+          if (counter > 26 && counter < 49) {
+            year = "4";
+          }
+          if (counter > 48 && counter < 61) {
+            year = "5";
+          }
+          newValue = init * monthly;
+          init = newValue;
+        totalInterest+=
+          output.innerHTML +=
+            "Your " +
+            counter +
+            " month total is: " +
+            init.toFixed(2) +
+            "$" +
+            "<br />";
+          counter++;
+          if (counter === 13) {
+            output.innerHTML +=
+              year + " year total is: " + init.toFixed(2) + "$" + "<br />";
+            // counter++;
+          }
+          if (counter === 25) {
+            output.innerHTML +=
+              year + " year total is: " + init.toFixed(2) + "$" + "<br />";
+            // counter++;
+          }
+          if (counter === 37) {
+            output.innerHTML +=
+              year + " year total is: " + init.toFixed(2) + "$" + "<br />";
+            // counter++;
+          }
+          if (counter === 49) {
+            output.innerHTML +=
+              year + " year total is: " + init.toFixed(2) + "$" + "<br />";
+            // counter++;
+          }
+          if (counter === 61) {
+            output.innerHTML +=
+              year + " year total is: " + init.toFixed(2) + "$" + "<br />";
+              totalInterestPaidOutput.innerHTML="Total Interest paid over a period of " + year+ " years is:" +(newValue-(parseInt(amount.value))).toFixed(2)+ "$";
+            // counter++;
+          }
+        }
+        
+        
+      }, 10);
+      
+    }
+  </script>
+</html>
